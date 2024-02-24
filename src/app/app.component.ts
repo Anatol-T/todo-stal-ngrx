@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import { FirstComponent } from "./componemts/first/first.component";
+import { TodosComponent } from "./componemts/todos/todos.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, FirstComponent]
+    imports: [RouterOutlet, TodosComponent]
 })
 export class AppComponent {
   title = 'todo-stal-ngrx';
