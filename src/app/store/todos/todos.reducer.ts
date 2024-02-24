@@ -6,5 +6,9 @@ const initialState: Todo[] = []
 
 export const todosReducer = createReducer(
   initialState,
-  on(set, (_state, action) => action.value)
+  on(set, (_state, action) => {
+    console.log(action.value);
+    
+    return action.value
+  })
   )

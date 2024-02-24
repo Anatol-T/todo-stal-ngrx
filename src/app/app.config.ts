@@ -8,10 +8,12 @@ import { todosReducer } from './store/todos/todos.reducer';
 import { TodosEffects } from './store/todos/todos.effects';
 import {  HttpClientModule } from '@angular/common/http';
 import { credentialsInterceptorProvider } from './interceptors/credential.interceptor';
+import { CommonModule } from '@angular/common';
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    CommonModule,
     provideRouter(routes),
     importProvidersFrom(HttpClientModule),
     provideStore({ todos: todosReducer }),
