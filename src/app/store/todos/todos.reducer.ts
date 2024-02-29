@@ -1,14 +1,17 @@
 import { createReducer, on } from "@ngrx/store";
 import { Todo } from "../../models/todos.models";
-import { set } from "./todos.actions";
+import { addTodoSuccessAction, getTodosSuccessAction } from "./todos.actions";
 
 const initialState: Todo[] = []
 
 export const todosReducer = createReducer(
   initialState,
-  on(set, (_state, action) => {
+  on(getTodosSuccessAction, (_state, action) => {
     console.log(action.value);
-    
-    return action.value
+
+    return action.value;
+  }),
+  on(addTodoSuccessAction, (state, action) => {
+    return [...state, action.value]
   })
-  )
+);

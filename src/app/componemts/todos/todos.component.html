@@ -8,10 +8,10 @@
   <div  class="overlay"></div>
   <div class="spinner">loading...</div>
 </div> -->
-<!-- <div class="todos-input">
+<div class="todos-input">
   <input class="input" type="text" placeholder="Add new todo title" [(ngModel)]="todoTitle"/>
   <button (click)="addTodoHandler()">Add todo</button>
-</div> -->
+</div>
 <div class="todos-box">
   @for (item of todos$ | async; track $index) {
     <div class="todos-header">{{item.title}}</div>
