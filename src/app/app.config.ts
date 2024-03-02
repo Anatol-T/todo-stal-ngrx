@@ -9,7 +9,6 @@ import { TodosEffects } from './store/todos/todos.effects';
 import {  HttpClientModule } from '@angular/common/http';
 import { credentialsInterceptorProvider } from './interceptors/credential.interceptor';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { TodosService } from './services/todos.service';
 
 

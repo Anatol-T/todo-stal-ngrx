@@ -5,11 +5,12 @@ import { Store, props } from '@ngrx/store';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { addTodoAction, getTodosAction } from '../../store/todos/todos.actions';
+import { TodoComponent } from './todo/todo.component';
 
 @Component({
   selector: 'app-todos',
   standalone: true,
-  imports: [NgFor, AsyncPipe, FormsModule],
+  imports: [NgFor, AsyncPipe, FormsModule, TodoComponent],
   templateUrl: './todos.component.html',
   styleUrl: './todos.component.css',
 })
@@ -19,7 +20,6 @@ export class TodosComponent implements OnInit {
 
   constructor(private store: Store<{ todos: Todo[] }>) {
     this.todos$ = this.store.select((state) => {
-      console.log(state);
       return state.todos;
     });
   }
@@ -30,8 +30,7 @@ export class TodosComponent implements OnInit {
   logoutHandler() {}
 
   addTodoHandler() {
-    console.log(this.todoTitle);
-    
     this.store.dispatch(addTodoAction({value: this.todoTitle}));
+    this.todoTitle = ''
   }
 }

@@ -1,5 +1,5 @@
 <div class="todos-header">
-  <h1>Angular TODO</h1>
+  <h1>Angular 17 NgRx TODO</h1>
   <div>
     <button (click)="logoutHandler()">logout</button>
   </div>
@@ -13,8 +13,8 @@
   <button (click)="addTodoHandler()">Add todo</button>
 </div>
 <div class="todos-box">
-  @for (item of todos$ | async; track $index) {
-    <div class="todos-header">{{item.title}}</div>
+  @for (todo of todos$ | async; track $index) {
+    <app-todo [todo]="todo"></app-todo>
   }
 </div>
 
