@@ -10,12 +10,14 @@ import {  HttpClientModule } from '@angular/common/http';
 import { credentialsInterceptorProvider } from './interceptors/credential.interceptor';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TodosService } from './services/todos.service';
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
     CommonModule,
     NgModule,
+    TodosService,
     provideRouter(routes),
     importProvidersFrom(HttpClientModule),
     provideStore({ todos: todosReducer }),
