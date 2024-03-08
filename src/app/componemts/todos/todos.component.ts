@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Todo } from '../../models/todos.models';
-import { Store, props } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { addTodoAction, getTodosAction } from '../../store/todos/todos.actions';
 import { TodoComponent } from './todo/todo.component';
+import { AppStateInterface } from '../../store/types/appState.interface';
 
 @Component({
   selector: 'app-todos',
@@ -18,7 +19,7 @@ export class TodosComponent implements OnInit {
   todoTitle = '';
   todos$: Observable<Todo[]>;
 
-  constructor(private store: Store<{ todos: Todo[] }>) {
+  constructor(private store: Store<AppStateInterface>) {
     this.todos$ = this.store.select((state) => {
       return state.todos;
     });
