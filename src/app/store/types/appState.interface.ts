@@ -1,5 +1,7 @@
+import { DomainTask } from "../../models/tasks.models";
 import { Todo } from "../../models/todos.models";
 
 export interface AppStateInterface {
-  todos: Todo[]
+  todos: Todo[],
+  tasks: DomainTask
 }

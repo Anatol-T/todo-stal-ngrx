@@ -11,6 +11,7 @@ import { credentialsInterceptorProvider } from './interceptors/credential.interc
 import { CommonModule } from '@angular/common';
 import { TodosService } from './services/todos.service';
 import { TasksService } from './services/tasks.service';
+import { tasksReducer } from './store/tasks/tasks.reducer';
 
 
 export const appConfig: ApplicationConfig = {
@@ -21,8 +22,8 @@ export const appConfig: ApplicationConfig = {
     TasksService,
     provideRouter(routes),
     importProvidersFrom(HttpClientModule),
-    provideStore({ todos: todosReducer }),
-    provideEffects([TodosEffects]),
+    provideStore({ todos: todosReducer, tasks:tasksReducer }),
+    provideEffects([TodosEffects, TodosEffects]),
     credentialsInterceptorProvider
   ],
 };
