@@ -7,11 +7,12 @@ import {
   deleteTodoAction,
   updateTodoTitleAction,
 } from '../../../store/todos/todos.actions';
+import { TasksComponent } from './tasks/tasks.component';
 
 @Component({
   selector: 'app-todo',
   standalone: true,
-  imports: [FormsModule, NgIf],
+  imports: [FormsModule, NgIf, TasksComponent],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.css',
 })

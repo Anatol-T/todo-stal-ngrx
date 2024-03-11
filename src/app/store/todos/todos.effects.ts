@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { exhaustMap, map } from "rxjs";
+import { exhaustMap, map, mergeMap } from "rxjs";
 import { addTodoAction, addTodoSuccessAction, deleteTodoAction, deleteTodoSuccessAction, getTodosAction, getTodosSuccessAction, updateTodoTitleAction, updateTodoTitleSuccessAction} from "./todos.actions";
 import { TodosService } from "../../services/todos.service";
 
@@ -10,7 +10,7 @@ export class TodosEffects {
   getTodos = createEffect(() =>
     this.actions$.pipe(
       ofType(getTodosAction),
-      exhaustMap(() =>
+      mergeMap(() =>
         this.todosService.getTodos().pipe(
           map((todos) => {
             return { type: '[Todos] Get todos success', value: todos };
@@ -23,7 +23,7 @@ export class TodosEffects {
   addTodo = createEffect(() =>
     this.actions$.pipe(
       ofType(addTodoAction),
-      exhaustMap(({ value }) =>
+      mergeMap(({ value }) =>
         this.todosService.addTodo(value).pipe(
           map((res) => {
             return addTodoSuccessAction({ value: res.data.item });
@@ -36,7 +36,7 @@ export class TodosEffects {
   deleteTodo = createEffect(() =>
     this.actions$.pipe(
       ofType(deleteTodoAction),
-      exhaustMap(({ value }) =>
+      mergeMap(({ value }) =>
         this.todosService.removeTodo(value).pipe(
           map((res) => {
             return deleteTodoSuccessAction({ value });
@@ -49,7 +49,7 @@ export class TodosEffects {
   updateTodoTitle = createEffect(() =>
     this.actions$.pipe(
       ofType(updateTodoTitleAction),
-      exhaustMap(({ value }) =>
+      mergeMap(({ value }) =>
         this.todosService.updateTodoTitle(value).pipe(
           map((res) => {
             return updateTodoTitleSuccessAction({ value });

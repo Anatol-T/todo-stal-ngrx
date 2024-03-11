@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { TodosService } from './services/todos.service';
 import { TasksService } from './services/tasks.service';
 import { tasksReducer } from './store/tasks/tasks.reducer';
+import { TasksEffects } from './store/tasks/tasks.effects';
 
 
 export const appConfig: ApplicationConfig = {
@@ -23,7 +24,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     importProvidersFrom(HttpClientModule),
     provideStore({ todos: todosReducer, tasks:tasksReducer }),
-    provideEffects([TodosEffects, TodosEffects]),
+    provideEffects([TodosEffects, TasksEffects]),
     credentialsInterceptorProvider
   ],
 };

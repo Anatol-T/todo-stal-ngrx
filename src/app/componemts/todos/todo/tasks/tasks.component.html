@@ -1,0 +1,12 @@
+<input
+  class="input"
+  type="text"
+  placeholder="Add new task"
+  [(ngModel)]="taskTitle"
+  (keyup.enter)="addTaskHandler()"
+/>
+@for ( task of tasks$ | async; track $index) {
+  <div>
+    {{task.title}}
+  </div>
+}
