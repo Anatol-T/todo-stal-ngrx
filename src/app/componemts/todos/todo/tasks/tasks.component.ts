@@ -4,14 +4,15 @@ import { Task } from '../../../../models/tasks.models';
 import { Filter } from '../../../../models/todos.models';
 import { Store } from '@ngrx/store';
 import { AppStateInterface } from '../../../../store/types/appState.interface';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgClass, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { getTasksAction } from '../../../../store/tasks/tasks.actions';
+import { addTaskAction, getTasksAction } from '../../../../store/tasks/tasks.actions';
+import { TaskStatusEnum } from '../../../../models/enums/taskStatus.enum';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [AsyncPipe, FormsModule],
+  imports: [AsyncPipe, FormsModule, NgClass, NgIf],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
@@ -22,18 +23,27 @@ export class TasksComponent implements OnInit {
   tasks$?: Observable<Task[]>;
 
   taskTitle = '';
+  newTitle: any;
+  taskStatusEnum = TaskStatusEnum;
+  editMode = false;
 
-  constructor(private store: Store<AppStateInterface>) {
-
-  }
+  constructor(private store: Store<AppStateInterface>) {}
 
   ngOnInit(): void {
     this.tasks$ = this.store.select((state) => {
       return state.tasks[this.todoId];
     });
-    this.store.dispatch(getTasksAction({value: {todoId: this.todoId}}))
+    this.store.dispatch(getTasksAction({ value: { todoId: this.todoId } }));
   }
 
   addTaskHandler() {
+    this.store.dispatch(
+      addTaskAction({ value: { todoId: this.todoId, title: this.taskTitle } })
+    );
+    this.taskTitle = '';
   }
+  removeTaskHandler() {}
+  activateEditMode() {}
+  editTitleHandler() {}
+  changeTaskStatusHandler($event: MouseEvent) {}
 }

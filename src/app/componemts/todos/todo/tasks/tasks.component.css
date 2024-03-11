@@ -4,3 +4,22 @@
   width: 100%;
   box-sizing: border-box;
 }
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.task-content {
+  display: flex;
+}
+.completed-task {
+  opacity: 0.7;
+  text-decoration: line-through;
+}
+.input {
+  border: 2px dashed black;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
