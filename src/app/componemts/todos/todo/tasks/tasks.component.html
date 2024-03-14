@@ -6,5 +6,5 @@
   (keyup.enter)="addTaskHandler()"
 />
 @for ( task of tasks$ | async; track $index) {
-  <app-task [task]="task"></app-task>
+  <app-task [todoId]="todoId" [task]="task"></app-task>
 }

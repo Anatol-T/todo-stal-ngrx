@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { exhaustMap, map, mergeMap } from 'rxjs';
 import { TasksService } from '../../services/tasks.service';
-import { addTaskAction, addTaskSuccessAction, getTasksAction, getTasksSuccessAction } from './tasks.actions';
+import { addTaskAction, addTaskSuccessAction, deleteTaskAction, deleteTaskSuccessAction, getTasksAction, getTasksSuccessAction } from './tasks.actions';
 
 @Injectable()
 export class TasksEffects {
@@ -26,13 +26,32 @@ export class TasksEffects {
     this.actions$.pipe(
       ofType(addTaskAction),
       mergeMap(({ value }) =>
-        this.tasksService.addTask({todoId: value.todoId, title: value.title}).pipe(
-          map((res) => {
-            return addTaskSuccessAction({
-              value: { todoId: value.todoId, task: res.data.item },
-            });
-          })
-        )
+        this.tasksService
+          .addTask({ todoId: value.todoId, title: value.title })
+          .pipe(
+            map((res) => {
+              return addTaskSuccessAction({
+                value: { todoId: value.todoId, task: res.data.item },
+              });
+            })
+          )
+      )
+    )
+  );
+
+  deleteTask = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteTaskAction),
+      mergeMap(({ value }) =>
+        this.tasksService
+          .removeTask({ todoId: value.todoId, taskId: value.taskId })
+          .pipe(
+            map((res) => {
+              return deleteTaskSuccessAction({
+                value: { todoId: value.todoId, taskId: value.taskId },
+              });
+            })
+          )
       )
     )
   );

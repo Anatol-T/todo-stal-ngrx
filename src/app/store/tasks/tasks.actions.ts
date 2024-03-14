@@ -18,3 +18,12 @@ export const addTaskSuccessAction = createAction(
   '[Tasks] Add task success',
   props<{ value: { todoId: string; task: Task } }>()
 );
+
+export const deleteTaskAction = createAction(
+  '[Tasks] Delete task',
+  props<{ value: { todoId: string; taskId: string } }>()
+);
+export const deleteTaskSuccessAction = createAction(
+  '[Tasks] Delete task success',
+  props<{ value: { todoId: string; taskId: string } }>()
+);
